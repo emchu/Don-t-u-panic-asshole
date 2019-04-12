@@ -20,6 +20,8 @@ class Game(object):
         self.screen = pygame.display.set_mode((1280, 720))
         self.tps_clock = pygame.time.Clock()
         self.menu = MainMenu(self)
+        self.current_screen = self.menu
+
         while True:
             # handle events
             for event in pygame.event.get():
@@ -42,7 +44,7 @@ class Game(object):
         pass
 
     def draw(self):
-        self.menu.draw()
+        self.current_screen.draw()
 
 
 if __name__ == "__main__":

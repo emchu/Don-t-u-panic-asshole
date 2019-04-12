@@ -2,6 +2,8 @@ import pygame
 import sys
 import pygame.freetype
 
+from Controls import Controls
+
 red = (255, 0, 0)
 green = (0, 255, 0)
 blue = (0, 0, 255)
@@ -16,6 +18,7 @@ class MainMenu(object):
         self.size = self.game.screen.get_size()
         self.menu = pygame.freetype.SysFont('Arial', 50)
         self.title = pygame.freetype.SysFont('Arial', 70)
+        self.controls = Controls(game, self)
 
     def tick(self):
         # input
@@ -31,8 +34,9 @@ class MainMenu(object):
         # menu buttons
         self.button(100, self.size[1] / 4 + 100, "Start", 100)
         self.button(100, self.size[1] / 4 + 150, "Ustawienia", 200)
-        self.button(100, self.size[1] / 4 + 200, "Tworcy", 150)
-        self.button(100, self.size[1] / 4 + 250, "Wyjdź", 120)
+        self.button(100, self.size[1] / 4 + 200, "Sterowanie", 200)
+        self.button(100, self.size[1] / 4 + 250, "Tworcy", 150)
+        self.button(100, self.size[1] / 4 + 300, "Wyjdź", 120)
 
         # rect for img
         pygame.draw.rect(self.game.screen, black, (self.size[0] - self.size[0]/3, self.size[1] - self.size[1]/4*3, 300, 400), 2)
@@ -49,6 +53,8 @@ class MainMenu(object):
                     pass
                 elif txt == "Ustawienia":
                     pass
+                elif txt == "Sterowanie":
+                    self.game.current_screen = self.controls
                 elif txt == "Tworcy":
                     pass
                 elif txt == "Wyjdź":
