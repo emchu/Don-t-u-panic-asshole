@@ -33,10 +33,10 @@ class MainMenu(object):
 
         # menu buttons
         self.button(100, self.size[1] / 4 + 100, "Start", 100)
-        self.button(100, self.size[1] / 4 + 150, "Settings", 200)
-        self.button(100, self.size[1] / 4 + 200, "Controls", 200)
+        self.button(100, self.size[1] / 4 + 150, "Settings", 150)
+        self.button(100, self.size[1] / 4 + 200, "Controls", 150)
         self.button(100, self.size[1] / 4 + 250, "Creators", 150)
-        self.button(100, self.size[1] / 4 + 300, "Exit", 120)
+        self.button(100, self.size[1] / 4 + 300, "Exit", 100)
 
         # rect for img
         pygame.draw.rect(self.game.screen, black, (self.size[0] - self.size[0]/3, self.size[1] - self.size[1]/4*3, 300, 400), 2)

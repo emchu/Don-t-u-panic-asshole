@@ -1,5 +1,4 @@
 import pygame
-import sys
 import pygame.freetype
 
 red = (255, 0, 0)
@@ -21,7 +20,7 @@ class Controls:
 
     def draw(self):
 
-        self.game.screen.fill((white))
+        self.game.screen.fill(white)
         self.title.render_to(self.game.screen, (100, self.size[1] / 8), "Controls", black)
 
         # WSAD
@@ -59,20 +58,22 @@ class Controls:
 
         # Exit
 
-        pos_x = self.size[0] * (5/6)
-        pos_y = self.size[1] / 8 + 10
+        exit_x = self.size[0] * (5/6)
+        exit_y = self.size[1] / 8 + 10
+        exit_x_length = 100
+        exit_y_length = 40
 
         # Button
 
         mouse = pygame.mouse.get_pos()
         click = pygame.mouse.get_pressed()
 
-        if pos_x + 100 > mouse[0] > pos_x and pos_y + 40 > mouse[1] > pos_y:
-            self.menu.render_to(self.game.screen, (pos_x, pos_y), "Back" , green)
-            pygame.draw.rect(self.game.screen, green, (pos_x, pos_y, 100, 40), 2)
+        if exit_x + exit_x_length > mouse[0] > exit_x and exit_y + exit_y_length > mouse[1] > exit_y:
+            self.menu.render_to(self.game.screen, (exit_x, exit_y), "Back" , green)
+            pygame.draw.rect(self.game.screen, green, (exit_x, exit_y, exit_x_length, exit_y_length), 2)
             if click[0]:
                 self.game.current_screen = self.exit_screen
         else:
-            self.menu.render_to(self.game.screen, (pos_x, pos_y), "Back", black)
-            pygame.draw.rect(self.game.screen, black, (pos_x, pos_y, 100, 40), 2)
+            self.menu.render_to(self.game.screen, (exit_x, exit_y), "Back", black)
+            pygame.draw.rect(self.game.screen, black, (exit_x, exit_y, exit_x_length, exit_y_length), 2)
 
