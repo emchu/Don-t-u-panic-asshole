@@ -1,12 +1,6 @@
 import pygame
 import pygame.freetype
-
-red = (255, 0, 0)
-green = (0, 255, 0)
-blue = (0, 0, 255)
-yellow = (255, 255, 0)
-black = (0, 0, 0)
-white = (255, 255, 255)
+from game.lib.colors import *
 
 
 class Controls:
@@ -20,60 +14,81 @@ class Controls:
 
     def draw(self):
 
-        self.game.screen.fill(white)
-        self.title.render_to(self.game.screen, (100, self.size[1] / 8), "Controls", black)
+        self.game.screen.fill(WHITE)
 
-        # WSAD
+        title_x = 100
+        title_y = self.size[1] / 8
+        self.title.render_to(self.game.screen, (title_x, title_y), "Controls", BLACK)
 
-        self.text.render_to(self.game.screen, (self.size[0] / 4 - 65, self.size[1] / 3 + 160), "Move", black)
-        pygame.draw.rect(self.game.screen, black, (self.size[0] / 4 - 80, self.size[1] / 3, 230, 150), 2)
+        first_row_text_y = self.size[1] / 3 + 160
+        first_row_icon_y = self.size[1] / 3 + 80
+        second_row_text_y = self.size[1] * (3/4) + 80
 
-        # Equipment I
+        wsad_length_x = 230
+        wsad_length_y = 150
+        wsad_icon_x = self.size[0] / 4 - 80
+        wsad_icon_y = self.size[1] / 3
+        wsad_text_x = wsad_icon_x + 60
 
-        self.text.render_to(self.game.screen, (self.size[0] / 2 - 100, self.size[1] / 3 + 160), "Equipment", black)
-        pygame.draw.rect(self.game.screen, black, (self.size[0] / 2 - 40, self.size[1] / 3 + 70, 70, 70), 2)
+        self.text.render_to(self.game.screen, (wsad_text_x, first_row_text_y), "Move", BLACK)
+        pygame.draw.rect(self.game.screen, BLACK, (wsad_icon_x, wsad_icon_y, wsad_length_x, wsad_length_y), 2)
 
-        # Use E
+        key_length = 70
 
-        self.text.render_to(self.game.screen, (self.size[0] * (3 / 4) - 170, self.size[1] / 3 + 160), "Use", black)
-        pygame.draw.rect(self.game.screen, black, (self.size[0] * (3/4) - 170, self.size[1] / 3 + 70, 70, 70), 2)
+        equip_icon_x = self.size[0] / 2 - 40
+        equip_text_x = equip_icon_x - 60
 
-        # Escape
+        self.text.render_to(self.game.screen, (equip_text_x, first_row_text_y), "Equipment", BLACK)
+        pygame.draw.rect(self.game.screen, BLACK, (equip_icon_x, first_row_icon_y, key_length, key_length), 2)
 
-        self.text.render_to(self.game.screen, (self.size[0] * (3 / 4) + 15, self.size[1] / 3 + 160), "Menu", black)
-        pygame.draw.rect(self.game.screen, black, (self.size[0] * (3 / 4) + 15, self.size[1] / 3 + 70, 70, 70), 2)
+        use_icon_x = self.size[0] * (3/4) - 170
 
-        # Quick access
+        self.text.render_to(self.game.screen, (use_icon_x, first_row_text_y), "Use", BLACK)
+        pygame.draw.rect(self.game.screen, BLACK, (use_icon_x, first_row_icon_y, key_length, key_length), 2)
 
-        self.text.render_to(self.game.screen, (self.size[0] / 4 - 90, self.size[1] * (3/4) + 80), "Quick access", black)
-        pygame.draw.rect(self.game.screen, black, (self.size[0] / 4 - 160, self.size[1] * (3/4), 390, 70), 2)
+        escape_icon_x = self.size[0] * (3 / 4) + 30
+        escape_text_x = escape_icon_x - 15
 
-        # LPM + mouse
+        self.text.render_to(self.game.screen, (escape_text_x, first_row_text_y), "Menu", BLACK)
+        pygame.draw.rect(self.game.screen, BLACK, (escape_icon_x, first_row_icon_y, key_length, key_length), 2)
 
-        self.text.render_to(self.game.screen, (self.size[0] / 2 + 30, self.size[1] * (3/4) + 80), "Atack", black)
-        pygame.draw.rect(self.game.screen, black, (self.size[0] / 2, self.size[1] * (3/4) - 70, 140, 140), 2)
+        access_x_length = 390
+        access_y_length = 70
+        access_icon_x = self.size[0] / 4 - 160
+        access_icon_y = self.size[1] * (3/4)
+        access_text_x = access_icon_x + 70
 
-        self.text.render_to(self.game.screen, (self.size[0] * (3 / 4) - 100, self.size[1] * (3 / 4) + 80), "Aim", black)
-        pygame.draw.rect(self.game.screen, black, (self.size[0] * (3 / 4) - 80, self.size[1] * (3 / 4) - 70, 140, 140), 2)
+        self.text.render_to(self.game.screen, (access_text_x, second_row_text_y), "Quick access", BLACK)
+        pygame.draw.rect(self.game.screen, BLACK, (access_icon_x, access_icon_y, access_x_length, access_y_length), 2)
 
-        # Exit
+        mouse_length = 140
+        mouse_icon_y = self.size[1] * (3 / 4) - 70
+
+        attack_icon_x = self.size[0] / 2
+        attack_text_x = attack_icon_x + 15
+
+        self.text.render_to(self.game.screen, (attack_text_x, second_row_text_y), "Attack", BLACK)
+        pygame.draw.rect(self.game.screen, BLACK, (attack_icon_x, mouse_icon_y, mouse_length, mouse_length), 2)
+
+        move_icon_x = self.size[0] * (3 / 4) - 80
+        move_text_x = move_icon_x + 40
+
+        self.text.render_to(self.game.screen, (move_text_x, second_row_text_y), "Aim", BLACK)
+        pygame.draw.rect(self.game.screen, BLACK, (move_icon_x, mouse_icon_y, mouse_length, mouse_length), 2)
 
         exit_x = self.size[0] * (5/6)
         exit_y = self.size[1] / 8 + 10
         exit_x_length = 100
         exit_y_length = 40
 
-        # Button
-
         mouse = pygame.mouse.get_pos()
         click = pygame.mouse.get_pressed()
 
         if exit_x + exit_x_length > mouse[0] > exit_x and exit_y + exit_y_length > mouse[1] > exit_y:
-            self.menu.render_to(self.game.screen, (exit_x, exit_y), "Back" , green)
-            pygame.draw.rect(self.game.screen, green, (exit_x, exit_y, exit_x_length, exit_y_length), 2)
+            self.menu.render_to(self.game.screen, (exit_x, exit_y), "Back", GREEN)
+            pygame.draw.rect(self.game.screen, GREEN, (exit_x, exit_y, exit_x_length, exit_y_length), 2)
             if click[0]:
                 self.game.current_screen = self.exit_screen
         else:
-            self.menu.render_to(self.game.screen, (exit_x, exit_y), "Back", black)
-            pygame.draw.rect(self.game.screen, black, (exit_x, exit_y, exit_x_length, exit_y_length), 2)
-
+            self.menu.render_to(self.game.screen, (exit_x, exit_y), "Back", BLACK)
+            pygame.draw.rect(self.game.screen, BLACK, (exit_x, exit_y, exit_x_length, exit_y_length), 2)
